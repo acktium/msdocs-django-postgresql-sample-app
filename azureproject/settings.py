@@ -35,6 +35,7 @@ if 'CODESPACE_NAME' in os.environ:
 
 INSTALLED_APPS = [
     'restaurant_review.apps.RestaurantReviewConfig',
+    'sessionData.apps.SessionDataConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,15 +121,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CACHES = {
-        "default": {  
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": os.environ.get('CACHELOCATION'),
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
+USE_REDIS = os.getenv('USE_REDIS', 'True').lower() in ['true', '1', 't', 'y', 'yes']
+
+if USE_REDIS:
+    CACHES = {
+            "default": {  
+                "BACKEND": "django_redis.cache.RedisCache",
+                "LOCATION": os.environ.get('CACHELOCATION'),
+                "OPTIONS": {
+                    "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        }
     }
-}
+
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

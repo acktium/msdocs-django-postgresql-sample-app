@@ -1,0 +1,13 @@
+{% extends 'sessionData/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h2>Session Results</h2>
+<div id="sessionMap" style="height: 400px;"></div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="{% static 'js/sessionMap.js' %}"></script>
+<script>
+    window.sessionData = {{ session_data|safe }};
+</script>
+{% endblock %}

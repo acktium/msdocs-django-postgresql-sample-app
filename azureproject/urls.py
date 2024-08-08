@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from azureproject import auth_views
 
 urlpatterns = [
     path('restaurant/', include('restaurant_review.urls')),
+    path('windsessions/', include('sessionData.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/login/', auth_views.login_view, name='login'),
+    path('accounts/logout/', auth_views.logout_view, name='logout'),
+    path('accounts/register/', auth_views.register_view, name='register'),
 ]
