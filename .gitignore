@@ -131,4 +131,4 @@ dmypy.json
 .azure
 
 # uploade files
-upload_data/
+upload_data/*
