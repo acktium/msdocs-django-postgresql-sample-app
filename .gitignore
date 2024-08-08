@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 .azure
+
+# uploade files
+upload_data/

@@ -102,6 +102,10 @@ DATABASES = {
     }
 }
 
+# Media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload_data') # media directory in the root directory
+MEDIA_URL = '/upload_data/'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
