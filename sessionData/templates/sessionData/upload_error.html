@@ -1,0 +1,8 @@
+{% extends 'sessionData/base.html' %}
+
+{% block content %}
+  <h2>Upload Error</h2>
+  <p>There was an error uploading your file:</p>
+  <p><strong>{{ error }}</strong></p>
+  <a href="{% url 'session_upload' %}">Try Again</a>
+{% endblock %}
